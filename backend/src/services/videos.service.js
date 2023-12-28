@@ -32,6 +32,7 @@ const getRegexObjForGenres = (genres) =>
 
 const getRegexObjForRating = (rating) =>
 {
+  console.log(rating);
   const ratingInNumber = convertRatingToInteger(rating);
   let regexObj = [];
   for(let i=ratingInNumber;i<=18;++i)
