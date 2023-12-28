@@ -1,11 +1,11 @@
 const express = require("express");
 const cors = require("cors");
+const mongoose = require("mongoose");
 const httpStatus = require("http-status");
-const routes = require("./routes/v1");
-const { errorHandler } = require("./middlewares/error");
+const routes = require("./src/routes/v1");
+const { errorHandler } = require("./src/middlewares/error");
 const helmet = require("helmet");
-const ApiError = require("./utils/ApiError");
-
+const ApiError = require("./src/utils/ApiError");
 
 const app = express();
 
@@ -32,5 +32,12 @@ app.use((req, res, next) => {
 
 //handle error
 app.use(errorHandler);
+
+mongoose.connect("mongodb://127.0.0.1:27017/xflix").then(() => {
+    console.log("Connected to MongoDB")});
+
+app.listen("8082", () => {
+    console.log(`App is running on port 8082`);
+  });
 
 module.exports = app;
